@@ -12,8 +12,8 @@
     varying float noise;
     void main() {
         vec3 color = vec3( vUv * ( 1. - 2. * noise ), 0.0 );
-        vec4 noise = mod(vec4(color.x,color.y,color.z,1.0)*time*0.5,1.0);
-        gl_FragColor = texture2D(texture1, vUv); // Displays Nothing
+        vec4 noise = mod(vec4(color.x,color.y,color.z,1.0)*(sin(time*20.)+1.)/2.*0.5,1.0);
+        gl_FragColor = texture2D(texture1, vUv)+noise; // Displays Nothing
     }
 </script>
 
@@ -214,7 +214,7 @@
     }
 </script>
 
-
+<center>
 <script>
 
 init();
@@ -286,8 +286,9 @@ function animate() {
     material.uniforms[ 'time' ].value = .00025 * ( Date.now() - start );
     requestAnimationFrame( animate );
     renderer.render( scene, camera );
-    trackball.update();   //これ追加
+    trackball.update();
 }
 </script>
+</center>
 </body>
 </html>
